@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/redux_store';
-import ScreensNavigator from './src/navigate/scrensNavigate';
+import ScreensNavigator from './src/navigate/screensNavigate';
 
 export default function App() {
   return (
@@ -14,13 +14,3 @@ export default function App() {
   );
 }
 
-
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

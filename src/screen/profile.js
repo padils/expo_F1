@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Button, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { getDriverApi, nextDrivers } from '../redux/reducer';
-import {TableDrivers, AnyTable} from './../parts/table';
+import {TableDrivers} from './../parts/table';
 import { backDrivers } from './../redux/reducer';
 
 let Profile = ({ getDriverApi, drivers, offset, nextDrivers, backDrivers ,navigation}) => {
@@ -14,7 +14,6 @@ let Profile = ({ getDriverApi, drivers, offset, nextDrivers, backDrivers ,naviga
          navigation.navigate('InfoDriver',{name})
         }
 
-
     if (!drivers) {
         
         return <View><Text>
@@ -23,20 +22,15 @@ let Profile = ({ getDriverApi, drivers, offset, nextDrivers, backDrivers ,naviga
     }
     return <View style={styles.container}>
 
-
         <View style={styles.container}>
-
-            {/* <Text>{drivers.DriverTable.Drivers[0].driverId}</Text> */}
-
-            <ScrollView>
-                <TableDrivers data={drivers.DriverTable.Drivers} infoDriver={infoDriver} />
-                {/* <AnyTable data={drivers.DriverTable.Drivers}/> */}
-                <View>
+         
+            <Button title='go to season List' onPress={()=>navigation.navigate('SeasonList')}/>
+            <View>
                     <Button disabled={drivers.total < offset} onPress={() => nextDrivers()} title='NEXT' />
                     <Button disabled={offset === 0} onPress={() => backDrivers()} title='BACK' />
 
                 </View>
-            </ScrollView>
+                <TableDrivers data={drivers.DriverTable.Drivers} infoDriver={infoDriver} />
 
         </View>
 
@@ -48,9 +42,7 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
         flexDirection:'column',
-        backgroundColor: 'grey'
-
-
+        
     },
 });
 
@@ -62,7 +54,5 @@ let mapStateToProps = (state) => {
     }
 
 }
-
-
 
 export default connect(mapStateToProps, { getDriverApi, nextDrivers, backDrivers })(Profile);

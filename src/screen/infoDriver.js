@@ -1,22 +1,24 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { getInfoDriverApi} from '../redux/reducer';
+import { getInfoDriverApi } from '../redux/reducer';
 import { InfoTableDriver } from './../parts/table';
 
 
-let InfoDriver = ({  getInfoDriverApi, route,driver}) => {
-   useEffect(()=>{getInfoDriverApi('f1',route.params.name)},[driver])
-   
-  if(driver){
+let InfoDriver = ({ getInfoDriverApi, route, driver }) => {
 
-   return<View>
-       <InfoTableDriver data={driver.DriverTable.Drivers}/>
-   </View>}
+    getInfoDriverApi('f1', route.params.name);
 
-   return<View>
-       <Text>dowland</Text>
-   </View>
+    if (driver) {
+
+        return <View>
+            <InfoTableDriver data={driver.DriverTable.Drivers} />
+        </View>
+    }
+
+    return <View>
+        <Text>dowland</Text>
+    </View>
 }
 
 const styles = StyleSheet.create({
@@ -35,4 +37,4 @@ let mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, { getInfoDriverApi})(InfoDriver);
+export default connect(mapStateToProps, { getInfoDriverApi })(InfoDriver);

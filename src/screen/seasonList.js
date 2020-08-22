@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { getSeason } from '../redux/reducer';
-import {SeasonListTable } from './../parts/table';
+import { SeasonListTable } from './../parts/table';
 
 let SeasonList = ({ season, getSeason, navigation }) => {
-    useEffect(() => { getSeason(30) }, [season])
-
+    
+    getSeason(30);
     let goToQueryResults = (season) => {
         navigation.navigate('QueryResults', { season })
     }
@@ -14,8 +14,8 @@ let SeasonList = ({ season, getSeason, navigation }) => {
 
         return <View>
             <SeasonListTable
-             data={season.SeasonTable.Seasons} 
-             goToQueryResults={goToQueryResults} />
+                data={season.SeasonTable.Seasons}
+                goToQueryResults={goToQueryResults} />
         </View>
     }
     return <View>
